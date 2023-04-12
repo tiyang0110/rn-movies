@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "rn-master-first",
+    "slug": "rn-master-first",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "rn-master-first"
+}
