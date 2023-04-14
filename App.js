@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import * as Font from "expo-font";
+import { Ionicons } from '@expo/vector-icons';
+import { useAssets } from 'expo-asset';
+import { NavigationContainer } from '@react-navigation/native';
+import Root from './navigation/Root';
+import { useColorScheme } from 'react-native';
+import { ThemeProvider } from 'styled-components/native';
+import { dartTheme, lightTheme } from './styled';
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function App() {
+  const [assets] = useAssets([require('./ipinCert.png')]);
+  const [loaded] = Font.useFonts(Ionicons.font);
+  const isDark = useColorScheme() === "dark";
+
+  if(!assets || !loaded){
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={isDark ? dartTheme : lightTheme}>
+      <NavigationContainer>
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
