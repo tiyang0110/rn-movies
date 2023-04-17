@@ -9,6 +9,8 @@ import { ThemeProvider } from 'styled-components/native';
 import { dartTheme, lightTheme } from './styled';
 import { QueryClient, QueryClientProvider } from "react-query";
 
+const quertClient = new QueryClient();
+
 export default function App() {
   const [assets] = useAssets([require('./ipinCert.png')]);
   const [loaded] = Font.useFonts(Ionicons.font);
@@ -19,10 +21,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={isDark ? dartTheme : lightTheme}>
-      <NavigationContainer>
-        <Root />
-      </NavigationContainer>
-    </ThemeProvider>
+    <QueryClientProvider client={quertClient}>
+      <ThemeProvider theme={isDark ? dartTheme : lightTheme}>
+        <NavigationContainer>
+          <Root />
+        </NavigationContainer>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
