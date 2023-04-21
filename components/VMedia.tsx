@@ -32,7 +32,7 @@ const Release = styled.Text`
 `;
 
 interface VMediaProps {
-  posterPath: string;
+  posterPath: string | null;
   originalTitle: string;
   overview: string;
   releaseDate?: string;

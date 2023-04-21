@@ -15,7 +15,7 @@ const Title = styled.Text`
 `;
 
 interface HMediaProp {
-  posterPath: string;
+  posterPath: string | null;
   originalTitle: string;
   voteAverage: number;
 }
